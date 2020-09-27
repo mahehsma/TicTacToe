@@ -1,4 +1,4 @@
-package com.example.tictactoe;
+package com.example.tictactoe.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -7,11 +7,13 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tictactoe.R;
 import com.example.tictactoe.game.Game;
+import com.example.tictactoe.game.Winner;
 import com.example.tictactoe.ui.Fragment_GameBoard;
+import com.example.tictactoe.ui.Fragment_GameOver;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     Button buttons[] = new Button[9];
@@ -61,11 +63,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private String getEndMessage(){
         String message="";
         switch(game.whoWon()){
-            case 0: message = getString(R.string.draw);
+            case DRAW: message = getString(R.string.draw);
             break;
-            case 1: message = getString(R.string.playerWon);
+            case PLAYER: message = getString(R.string.playerWon);
             break;
-            case 2: message = getString(R.string.aiWon);
+            case AI: message = getString(R.string.aiWon);
             break;
         }
         return message;

@@ -1,4 +1,4 @@
-package com.example.tictactoe;
+package com.example.tictactoe.ui;
 
 import android.os.Bundle;
 
@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.tictactoe.R;
 import com.example.tictactoe.game.Game;
 
 /**
