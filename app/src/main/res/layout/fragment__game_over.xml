@@ -22,27 +22,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <LinearLayout
+        <Button
+            android:id="@+id/button_newGame"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@id/textView_gameOver">
-
-            <Button
-                android:id="@+id/newGame"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorPrimary"
-                android:text="@string/newGame"
-                app:layout_constraintTop_toBottomOf ="@id/textView_gameOver" />
-
-            <Button
-                android:id="@+id/showCredits"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorPrimary"
-                android:text="show Credits" />
-        </LinearLayout>
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:text="@string/newGame"
+            app:layout_constraintTop_toBottomOf="@id/textView_gameOver" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

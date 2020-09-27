@@ -2,4 +2,7 @@
     <string name="app_name">TicTacToe</string>
     <string name="newGame">new Game</string>
     <string name="gameOver"> game Over</string>
+    <string name="playerWon">Player has won!</string>
+    <string name="aiWon">AI has won!</string>
+    <string name="draw">Draw!</string>
 </resources>

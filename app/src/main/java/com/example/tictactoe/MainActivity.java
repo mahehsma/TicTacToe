@@ -5,9 +5,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
-import android.view.SurfaceControl;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tictactoe.game.Game;
@@ -15,6 +15,7 @@ import com.example.tictactoe.ui.Fragment_GameBoard;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     Button buttons[] = new Button[9];
+    Button button_newGame;
     Game game;
 
     @Override
@@ -40,16 +41,40 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         for(Button button : buttons){
             button.setOnClickListener(this);
         }
+        button_newGame = findViewById(R.id.button_newGame);
+        newGame();
+    }
+
+    private void newGame(){
         game = new Game(buttons);
+    }
+
+    private void showGameOver(){
+        String message = getEndMessage();
+        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+        Fragment fragment_GameOver = Fragment_GameOver.newInstance(game, buttons,getEndMessage());
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.add(R.id.fragmentContainer, fragment_GameOver).commit();
+
+    }
+
+    private String getEndMessage(){
+        String message="";
+        switch(game.whoWon()){
+            case 0: message = getString(R.string.draw);
+            break;
+            case 1: message = getString(R.string.playerWon);
+            break;
+            case 2: message = getString(R.string.aiWon);
+            break;
+        }
+        return message;
     }
 
     @Override
     public void onClick(View v) {
         if(game.isGameOver()){
-            Toast.makeText(getApplicationContext(), "GameOver", Toast.LENGTH_SHORT).show();
-            Fragment fragment_GameOver = new Fragment_GameOver();
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragmentContainer, fragment_GameOver).commit();
+            showGameOver();
         } else{
         switch (v.getId()) {
             case R.id.buttonTL:
@@ -80,6 +105,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 game.makeMove(8);
                 break;
         }
+            if(game.isGameOver()){
+                showGameOver();
+            }
         }
     }
 

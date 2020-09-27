@@ -14,6 +14,8 @@ public class Game extends Activity {
     private Minimax minimax;
     private Board board;
     private boolean gameOver;
+    private final int DRAW = 0, PLAYER = 1, AI = 2;
+    private int state;
 
     public Game(Button[] buttons){
         this.buttons = buttons;
@@ -33,25 +35,28 @@ public class Game extends Activity {
         return gameOver;
     }
 
+    private void setGameOver(int state){
+        this.state = state;
+        this.gameOver = true;
+    }
 
+    public int whoWon(){
+        return state;
+    }
     public void makeMove(int position){
         if(this.board.isEmpty(position) && !gameOver){
             this.board.placeFigure(position, figurePlayer);
             buttons[position].setText(figurePlayer+" ");
             if(board.hasWon()){
-                print(figurePlayer + " has won!");
-                gameOver = true;
+                setGameOver(PLAYER);
             }
             if(!board.isDraw() && !gameOver) {
                 int enemyMove = minimax.getBestMove(this.board);
                 this.board.placeFigure(enemyMove, figurePc);
                 buttons[enemyMove].setText(figurePc+" ");
-                if(board.hasWon()) gameOver = true;
+                if(board.hasWon()) setGameOver(AI);
             } else
-                gameOver = true;
-        } else {
-            if(gameOver)
-            resetGame();
+                setGameOver(DRAW);
         }
     }
 
