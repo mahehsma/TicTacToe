@@ -74,7 +74,7 @@ public class Fragment_GameOver extends Fragment implements View.OnClickListener 
     public void onClick(View v) {
         Fragment fragment_game = new Fragment_GameBoard();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragmentContainer, fragment_game).commit();
+        transaction.add(R.id.fragmentContainer, fragment_game).commit();
         this.game = new Game(buttons);
     }
 }
