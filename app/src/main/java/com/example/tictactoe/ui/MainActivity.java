@@ -42,6 +42,9 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         switch (item.getItemId()) {
+            case R.id.settings:
+                showSettings();
+                return true;
             case R.id.credits:
                 showCredits();
                 return true;
@@ -50,7 +53,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void showCredits(){
+    private void showSettings() {
+        Activity settingsActivity = new SettingsActivity();
+        Intent intent = new Intent(this, settingsActivity.getClass());
+        this.startActivity(intent);
+    }
+
+    private void showCredits() {
         Activity creditsActivity = new CreditsActivity();
         Intent intent = new Intent(this, creditsActivity.getClass());
         this.startActivity(intent);
