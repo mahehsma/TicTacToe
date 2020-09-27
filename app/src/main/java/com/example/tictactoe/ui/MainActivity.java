@@ -57,7 +57,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Fragment fragment_GameOver = Fragment_GameOver.newInstance(game, buttons,getEndMessage());
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.add(R.id.fragmentContainer, fragment_GameOver).commit();
-
     }
 
     private String getEndMessage(){

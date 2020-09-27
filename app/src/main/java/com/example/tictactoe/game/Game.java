@@ -3,7 +3,6 @@ package com.example.tictactoe.game;
 
 import android.app.Activity;
 import android.widget.Button;
-import android.widget.Toast;
 
 
 
@@ -13,7 +12,7 @@ public class Game extends Activity {
     private char figurePc = 'O';
     private Minimax minimax;
     private Board board;
-    private boolean gameOver;
+    private boolean gameOver = false;
     private Winner state;
 
     public Game(Button[] buttons){
@@ -58,22 +57,4 @@ public class Game extends Activity {
                 setGameOver(Winner.DRAW);
         }
     }
-
-    private boolean hasEnded(char figure){
-        if(board.hasWon()){
-            print(figure + " has won!");
-            return true;
-        }
-        if(board.isDraw()){
-            print("Draw!");
-            return true;
-        }
-        return false;
-    }
-
-    private void print(String message){
-        //Toast.makeText(this.getApplicationContext(),message, Toast.LENGTH_SHORT).show();
-        buttons[0].setText(message);
-    }
-
 }
