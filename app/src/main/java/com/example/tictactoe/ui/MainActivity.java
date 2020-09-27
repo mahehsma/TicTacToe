@@ -44,17 +44,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             button.setOnClickListener(this);
         }
         button_newGame = findViewById(R.id.button_newGame);
-        newGame();
-    }
-
-    private void newGame(){
         game = new Game(buttons);
     }
 
+
     private void showGameOver(){
         String message = getEndMessage();
-        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
-        Fragment fragment_GameOver = Fragment_GameOver.newInstance(game, buttons,getEndMessage());
+        print(message);
+        Fragment fragment_GameOver = Fragment_GameOver.newInstance(game, buttons,message);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.add(R.id.fragmentContainer, fragment_GameOver).commit();
     }

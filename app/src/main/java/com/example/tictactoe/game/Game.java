@@ -12,7 +12,7 @@ public class Game extends Activity {
     private char figurePc = 'O';
     private Minimax minimax;
     private Board board;
-    private boolean gameOver = false;
+    private boolean gameOver;
     private Winner state;
 
     public Game(Button[] buttons){
