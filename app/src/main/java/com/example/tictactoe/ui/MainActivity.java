@@ -17,8 +17,6 @@ import com.example.tictactoe.ui.Fragment_GameOver;
 
 public class MainActivity extends AppCompatActivity {
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,11 +24,5 @@ public class MainActivity extends AppCompatActivity {
         Fragment fragment_Game = new Fragment_GameBoard();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragmentContainer, fragment_Game);
-
-    }
-
-
-    private void print(String message){
-        Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
     }
 }
