@@ -3,8 +3,10 @@ package com.example.tictactoe.ui;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
+import android.view.SurfaceControl;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -70,6 +72,9 @@ public class Fragment_GameOver extends Fragment implements View.OnClickListener 
 
     @Override
     public void onClick(View v) {
-        game = new Game(buttons);
+        Fragment fragment_game = new Fragment_GameBoard();
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragmentContainer, fragment_game).commit();
+        this.game = new Game(buttons);
     }
 }
