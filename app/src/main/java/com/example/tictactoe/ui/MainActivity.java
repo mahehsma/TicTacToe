@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
         Fragment fragment_Game = new Fragment_GameBoard();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragmentContainer, fragment_Game);
@@ -39,6 +38,8 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         preferences.registerOnSharedPreferenceChangeListener(this);
         loadPreferences();
+        changeColor();
+        setContentView(R.layout.activity_main);
     }
 
     @Override
@@ -65,7 +66,11 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
     private void loadPreferences() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        Settings.appColor = preferences.getString("list_preference_color", "yellow");
+        if (Settings.appColor != (preferences.getString("list_preference_color", "yellow"))) {
+            Settings.appColor = (preferences.getString("list_preference_color", "yellow"));
+            changeColor();
+            this.recreate();
+        }
         switch (preferences.getString("list_preference_difficulty", "Impossible")) {
             case "Easy":
                 Settings.difficulty = Difficulty.Easy;
@@ -75,6 +80,21 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                 break;
             default:
                 Settings.difficulty = Difficulty.Impossible;
+        }
+    }
+
+    private void changeColor() {
+        String newColor = Settings.appColor;
+        switch (newColor) {
+            case "yellow":
+                getTheme().applyStyle(R.style.AppOverlayYellow, true);
+                break;
+            case "blue":
+                getTheme().applyStyle(R.style.AppOverlayBlue, true);
+                break;
+            default:
+                getTheme().applyStyle(R.style.AppOverlayRed, true);
+                break;
         }
     }
 

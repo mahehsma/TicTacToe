@@ -7,23 +7,21 @@
     tools:context=".ui.CreditsActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textView_About"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/colorAccent"
         android:text="@string/about"
         android:textAlignment="center"
         android:textColor="@android:color/black"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintBottom_toTopOf="@+id/textView_VersionInfo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textView_VersionInfo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/colorAccent"
         android:text="Version: 1.0.0"
         android:textAlignment="center"
         android:textColor="@android:color/black"

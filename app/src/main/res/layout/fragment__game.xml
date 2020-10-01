@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="?colorPrimary"
     tools:context=".ui.Fragment_GameBoard">
 
     <TableLayout
@@ -22,9 +22,9 @@
                 android:layout_marginRight="1dp"
                 android:layout_marginBottom="1dp"
                 android:layout_weight="1"
-                android:background="@color/colorAccent"
+                android:background="?colorAccent"
                 android:textAlignment="center"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="?colorPrimaryDark"
                 android:textSize="36sp" />
 
             <Button
@@ -35,9 +35,9 @@
                 android:layout_marginRight="1dp"
                 android:layout_marginBottom="1dp"
                 android:layout_weight="1"
-                android:background="@color/colorAccent"
+                android:background="?colorAccent"
                 android:textAlignment="center"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="?colorPrimaryDark"
                 android:textSize="36sp" />
 
             <Button
@@ -47,9 +47,9 @@
                 android:layout_marginLeft="1dp"
                 android:layout_marginBottom="1dp"
                 android:layout_weight="1"
-                android:background="@color/colorAccent"
+                android:background="?colorAccent"
                 android:textAlignment="center"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="?colorPrimaryDark"
                 android:textSize="36sp" />
         </TableRow>
 
@@ -66,9 +66,9 @@
                 android:layout_marginRight="1dp"
                 android:layout_marginBottom="1dp"
                 android:layout_weight="1"
-                android:background="@color/colorAccent"
+                android:background="?colorAccent"
                 android:textAlignment="center"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="?colorPrimaryDark"
                 android:textSize="36sp" />
 
             <Button
@@ -80,9 +80,9 @@
                 android:layout_marginRight="1dp"
                 android:layout_marginBottom="1dp"
                 android:layout_weight="1"
-                android:background="@color/colorAccent"
+                android:background="?colorAccent"
                 android:textAlignment="center"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="?colorPrimaryDark"
                 android:textSize="36sp" />
 
             <Button
@@ -93,9 +93,9 @@
                 android:layout_marginTop="1dp"
                 android:layout_marginBottom="1dp"
                 android:layout_weight="1"
-                android:background="@color/colorAccent"
+                android:background="?colorAccent"
                 android:textAlignment="center"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="?colorPrimaryDark"
                 android:textSize="36sp" />
         </TableRow>
 
@@ -111,9 +111,9 @@
                 android:layout_marginTop="1dp"
                 android:layout_marginRight="1dp"
                 android:layout_weight="1"
-                android:background="@color/colorAccent"
+                android:background="?colorAccent"
                 android:textAlignment="center"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="?colorPrimaryDark"
                 android:textSize="36sp" />
 
             <Button
@@ -124,9 +124,9 @@
                 android:layout_marginTop="1dp"
                 android:layout_marginRight="1dp"
                 android:layout_weight="1"
-                android:background="@color/colorAccent"
+                android:background="?colorAccent"
                 android:textAlignment="center"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="?colorPrimaryDark"
                 android:textSize="36sp" />
 
             <Button
@@ -136,9 +136,9 @@
                 android:layout_marginLeft="1dp"
                 android:layout_marginTop="1dp"
                 android:layout_weight="1"
-                android:background="@color/colorAccent"
+                android:background="?colorAccent"
                 android:textAlignment="center"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="?colorPrimaryDark"
                 android:textSize="36sp" />
         </TableRow>
 
