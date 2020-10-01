@@ -4,6 +4,7 @@ package com.example.tictactoe.game;
 import android.app.Activity;
 import android.widget.Button;
 
+import com.example.tictactoe.Settings;
 
 
 public class Game extends Activity {
@@ -21,7 +22,7 @@ public class Game extends Activity {
     }
 
     private void resetGame(){
-        minimax = new Minimax(figurePlayer,figurePc);
+        minimax = new Minimax(getDifficulty(), figurePlayer, figurePc);
         board = new Board();
         gameOver = false;
         for(Button button : buttons){
@@ -48,13 +49,17 @@ public class Game extends Activity {
             if(board.hasWon()){
                 setGameOver(Winner.PLAYER);
             }
-            if(!board.isDraw() && !gameOver) {
+            if (!board.isDraw() && !gameOver) {
                 int enemyMove = minimax.getBestMove(this.board);
                 this.board.placeFigure(enemyMove, figurePc);
-                buttons[enemyMove].setText(figurePc+" ");
-                if(board.hasWon()) setGameOver(Winner.AI);
+                buttons[enemyMove].setText(figurePc + " ");
+                if (board.hasWon()) setGameOver(Winner.AI);
             } else
                 setGameOver(Winner.DRAW);
         }
+    }
+
+    public Difficulty getDifficulty() {
+        return Settings.difficulty;
     }
 }

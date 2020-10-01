@@ -2,20 +2,36 @@ package com.example.tictactoe.game;
 
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class Minimax {
     private char figurePlayer;
     private char figurePc;
-    private Difficulty difficulty;
+    private float randomness;
 
-    public Minimax(char figurePlayer, char figurePc){
+    public Minimax(Difficulty difficulty, char figurePlayer, char figurePc) {
         this.figurePlayer = figurePlayer;
         this.figurePc = figurePc;
+        setRandomness(difficulty);
     }
 
-    private int getEmptyField(Board board){
+    private void setRandomness(Difficulty difficulty) {
+        switch (difficulty) {
+            case Easy:
+                this.randomness = 0.5f;
+                break;
+            case Hard:
+                this.randomness = 0.3f;
+                break;
+            default:
+                this.randomness = 0;
+        }
+    }
+
+    private int getEmptyField(Board board) {
         int emptyField = 0;
-        for(int i = 0; i < board.getBoard().length; i++){
-            if(board.isEmpty(i)){
+        for (int i = 0; i < board.getBoard().length; i++) {
+            if (board.isEmpty(i)) {
                 emptyField = i;
                 break;
             }
@@ -23,21 +39,32 @@ public class Minimax {
         return emptyField;
     }
 
-    public int getBestMove(Board board){
+    private int randomMove(Board board) {
+        ArrayList<Integer> possibleMoves = new ArrayList<>();
+        for (int i = 0; i < 9; i++) {
+            if (board.isEmpty(i)) possibleMoves.add(i);
+        }
+        return possibleMoves.get((int) (Math.random() * possibleMoves.size()));
+    }
+
+    public int getBestMove(Board board) {
         Board clonedBoard = board.cloneBoard();
         int bestMove = getEmptyField(clonedBoard);
         int value;
         int bestValue = Integer.MIN_VALUE;
-        for(int i = 0; i < 9; i++){
-            if(clonedBoard.isEmpty(i)) {
-                clonedBoard.placeFigure(i,figurePc);
+        for (int i = 0; i < 9; i++) {
+            if (clonedBoard.isEmpty(i)) {
+                clonedBoard.placeFigure(i, figurePc);
                 value = minimax(clonedBoard, false);
-                clonedBoard.placeFigure(i,' ');
-                if(value >= bestValue){
+                clonedBoard.placeFigure(i, ' ');
+                if (value >= bestValue) {
                     bestValue = value;
                     bestMove = i;
                 }
             }
+        }
+        if (Math.random() < randomness) {
+            return randomMove(clonedBoard);
         }
         return bestMove;
     }

@@ -3,21 +3,21 @@
 
     <PreferenceCategory app:title="@string/game_header">
         <ListPreference
-            android:defaultValue="1"
+            android:defaultValue="@string/difficulty_default"
             android:entries="@array/difficulty_entries"
             android:entryValues="@array/difficulty_values"
             android:key="list_preference_difficulty"
-            android:summary="@string/summary_difficulty"
+            android:summary="%s"
             android:title="@string/difficulty" />
     </PreferenceCategory>
 
     <PreferenceCategory app:title="@string/appearance_header">
         <ListPreference
-            android:defaultValue="1"
+            android:defaultValue="@string/color_default"
             android:entries="@array/color_entries"
             android:entryValues="@array/color_values"
             android:key="list_preference_color"
-            android:summary="@string/summary_color"
+            android:summary="%s"
             android:title="@string/color" />
     </PreferenceCategory>
 

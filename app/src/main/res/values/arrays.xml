@@ -1,5 +1,6 @@
 <resources>
     <!-- Difficulty Preference -->
+    <string name="difficulty_default">Impossible</string>
     <string-array name="difficulty_entries">
         <item>Easy</item>
         <item>Hard</item>
@@ -13,6 +14,7 @@
     </string-array>
 
     <!-- Color Preference -->
+    <string name="color_default">yellow</string>
     <string-array name="color_entries">
         <item>yellow</item>
         <item>blue</item>

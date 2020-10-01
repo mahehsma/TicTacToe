@@ -3,9 +3,11 @@ package com.example.tictactoe.ui;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.preference.PreferenceManager;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -15,12 +17,16 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.tictactoe.R;
+import com.example.tictactoe.Settings;
+import com.example.tictactoe.game.Difficulty;
 import com.example.tictactoe.game.Game;
 import com.example.tictactoe.game.Winner;
 import com.example.tictactoe.ui.Fragment_GameBoard;
 import com.example.tictactoe.ui.Fragment_GameOver;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.Set;
+
+public class MainActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +35,10 @@ public class MainActivity extends AppCompatActivity {
         Fragment fragment_Game = new Fragment_GameBoard();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragmentContainer, fragment_Game);
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        preferences.registerOnSharedPreferenceChangeListener(this);
+        loadPreferences();
     }
 
     @Override
@@ -53,15 +63,34 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void loadPreferences() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        Settings.appColor = preferences.getString("list_preference_color", "yellow");
+        switch (preferences.getString("list_preference_difficulty", "Impossible")) {
+            case "Easy":
+                Settings.difficulty = Difficulty.Easy;
+                break;
+            case "Hard":
+                Settings.difficulty = Difficulty.Hard;
+                break;
+            default:
+                Settings.difficulty = Difficulty.Impossible;
+        }
+    }
+
     private void showSettings() {
         Activity settingsActivity = new SettingsActivity();
-        Intent intent = new Intent(this, settingsActivity.getClass());
-        this.startActivity(intent);
+        this.startActivity(new Intent(this, settingsActivity.getClass()));
     }
 
     private void showCredits() {
         Activity creditsActivity = new CreditsActivity();
-        Intent intent = new Intent(this, creditsActivity.getClass());
-        this.startActivity(intent);
+        this.startActivity(new Intent(this, creditsActivity.getClass()));
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        Toast.makeText(getApplicationContext(), "settings changed", Toast.LENGTH_SHORT).show();
+        loadPreferences();
     }
 }

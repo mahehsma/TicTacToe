@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.tictactoe.R;
+import com.example.tictactoe.game.Difficulty;
 import com.example.tictactoe.game.Game;
 
 /**
@@ -20,7 +21,7 @@ import com.example.tictactoe.game.Game;
  */
 public class Fragment_GameBoard extends Fragment implements View.OnClickListener {
     Game game;
-    Button buttons[] = new Button[9];
+    Button[] buttons = new Button[9];
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
