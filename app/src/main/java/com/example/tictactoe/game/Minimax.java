@@ -5,6 +5,7 @@ import android.widget.Toast;
 public class Minimax {
     private char figurePlayer;
     private char figurePc;
+    private Difficulty difficulty;
 
     public Minimax(char figurePlayer, char figurePc){
         this.figurePlayer = figurePlayer;

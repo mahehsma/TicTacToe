@@ -5,17 +5,19 @@
         <ListPreference
             android:defaultValue="1"
             android:entries="@array/difficulty_entries"
-            android:entryValues="@array/difficulty_entries"
-            android:key="list_preference_1"
+            android:entryValues="@array/difficulty_values"
+            android:key="list_preference_difficulty"
+            android:summary="@string/summary_difficulty"
             android:title="@string/difficulty" />
     </PreferenceCategory>
 
     <PreferenceCategory app:title="@string/appearance_header">
         <ListPreference
             android:defaultValue="1"
-            android:entries="@array/color_values"
+            android:entries="@array/color_entries"
             android:entryValues="@array/color_values"
-            android:key="list_preference_1"
+            android:key="list_preference_color"
+            android:summary="@string/summary_color"
             android:title="@string/color" />
     </PreferenceCategory>
 

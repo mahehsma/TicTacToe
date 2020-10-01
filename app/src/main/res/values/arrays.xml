@@ -3,9 +3,21 @@
     <string-array name="difficulty_entries">
         <item>Easy</item>
         <item>Hard</item>
+        <item>Impossible</item>
+    </string-array>
+
+    <string-array name="difficulty_values">
+        <item>Easy</item>
+        <item>Hard</item>
+        <item>Impossible</item>
     </string-array>
 
     <!-- Color Preference -->
+    <string-array name="color_entries">
+        <item>yellow</item>
+        <item>blue</item>
+    </string-array>
+
     <string-array name="color_values">
         <item>yellow</item>
         <item>blue</item>

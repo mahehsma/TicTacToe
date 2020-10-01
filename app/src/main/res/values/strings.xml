@@ -16,7 +16,9 @@
 
     <!-- Game preference -->
     <string name="difficulty">Difficulty</string>
+    <string name="summary_difficulty">choose wanted difficulty</string>
 
     <!-- Appearance preference-->
     <string name="color">Color</string>
+    <string name="summary_color">choose preferred color</string>
 </resources>
