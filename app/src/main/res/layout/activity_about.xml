@@ -22,7 +22,7 @@
         android:id="@+id/textView_VersionInfo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Version: 2.0.1"
+        android:text="Version: 2.0.2"
         android:textAlignment="center"
         android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="parent"

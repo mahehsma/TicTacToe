@@ -29,7 +29,7 @@ public class Minimax {
     }
 
     private int getEmptyField(Board board) {
-        int emptyField = 0;
+        int emptyField = -1;
         for (int i = 0; i < board.getBoard().length; i++) {
             if (board.isEmpty(i)) {
                 emptyField = i;
@@ -55,7 +55,7 @@ public class Minimax {
         for (int i = 0; i < 9; i++) {
             if (clonedBoard.isEmpty(i)) {
                 clonedBoard.placeFigure(i, figurePc);
-                value = minimax(clonedBoard, false);
+                value = minimax(clonedBoard, false, 0);
                 clonedBoard.placeFigure(i, ' ');
                 if (value >= bestValue) {
                     bestValue = value;
@@ -68,33 +68,34 @@ public class Minimax {
         }
         return bestMove;
     }
-    private int minimax(Board board, boolean isMaximizing){
-        int value=0;
-        if(board.isDraw()) return 0;
-        if(isMaximizing){
-            if(board.hasWon()) return Integer.MIN_VALUE;
+
+    private int minimax(Board board, boolean isMaximizing, int depth) {
+        int value = 0;
+        if (board.isDraw()) return 0;
+        if (isMaximizing) {
+            if (board.hasWon()) return Integer.MIN_VALUE;
             int bestValue = Integer.MIN_VALUE;
-            for(int i = 0; i < 9; i++) {
+            for (int i = 0; i < 9; i++) {
                 if (board.isEmpty(i)) {
                     board.placeFigure(i, figurePc);
-                    value = minimax(board, false);
+                    value = minimax(board, false, depth + 1);
                     board.placeFigure(i, ' ');
                     bestValue = Math.max(bestValue, value);
                 }
             }
-            return bestValue;
+            return Math.min(bestValue - depth, bestValue);
         } else{
             if(board.hasWon()) return Integer.MAX_VALUE;
             int bestValue = Integer.MAX_VALUE;
             for(int i = 0; i < 9; i++) {
                 if (board.isEmpty(i)) {
                     board.placeFigure(i, figurePlayer);
-                    value = minimax(board, true);
+                    value = minimax(board, true, depth + 1);
                     board.placeFigure(i, ' ');
                     bestValue = Math.min(bestValue, value);
                 }
             }
-            return bestValue;
+            return Math.max(bestValue + depth, bestValue);
         }
     }
 }
