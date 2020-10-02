@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     }
 
     private void showCredits() {
-        Activity creditsActivity = new CreditsActivity();
+        Activity creditsActivity = new AboutActivity();
         this.startActivity(new Intent(this, creditsActivity.getClass()));
     }
 

@@ -26,7 +26,7 @@ public class Game extends Activity {
         board = new Board();
         gameOver = false;
         for(Button button : buttons){
-            button.setText(" ");
+            button.setText("");
         }
     }
 
@@ -45,14 +45,13 @@ public class Game extends Activity {
     public void makeMove(int position){
         if(this.board.isEmpty(position) && !gameOver){
             this.board.placeFigure(position, figurePlayer);
-            buttons[position].setText(figurePlayer+" ");
-            if(board.hasWon()){
+            buttons[position].setText(figurePlayer + "");
+            if (board.hasWon()) {
                 setGameOver(Winner.PLAYER);
-            }
-            if (!board.isDraw() && !gameOver) {
+            } else if (!board.isDraw() && !gameOver) {
                 int enemyMove = minimax.getBestMove(this.board);
                 this.board.placeFigure(enemyMove, figurePc);
-                buttons[enemyMove].setText(figurePc + " ");
+                buttons[enemyMove].setText(figurePc + "");
                 if (board.hasWon()) setGameOver(Winner.AI);
             } else
                 setGameOver(Winner.DRAW);
