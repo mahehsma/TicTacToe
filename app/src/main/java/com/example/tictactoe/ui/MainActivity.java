@@ -12,19 +12,11 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.tictactoe.R;
 import com.example.tictactoe.Settings;
 import com.example.tictactoe.game.Difficulty;
-import com.example.tictactoe.game.Game;
-import com.example.tictactoe.game.Winner;
-import com.example.tictactoe.ui.Fragment_GameBoard;
-import com.example.tictactoe.ui.Fragment_GameOver;
-
-import java.util.Set;
 
 public class MainActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
 

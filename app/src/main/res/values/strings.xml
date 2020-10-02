@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">TicTacToe</string>
-    <string name="newGame">New Game!</string>
+    <string name="newGame">Press for New Game!</string>
     <string name="gameOver"> game Over</string>
     <string name="playerWon">Player has won!</string>
     <string name="aiWon">AI has won!</string>

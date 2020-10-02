@@ -2,11 +2,11 @@ package com.example.tictactoe.ui;
 
 import android.os.Bundle;
 
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
-import android.view.SurfaceControl;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -17,10 +17,10 @@ import com.example.tictactoe.game.Game;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Fragment_GameOver#newInstance} factory method to
+ * Use the {@link DialogFragment_GameOver#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Fragment_GameOver extends Fragment implements View.OnClickListener {
+public class DialogFragment_GameOver extends DialogFragment implements View.OnClickListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -32,7 +32,7 @@ public class Fragment_GameOver extends Fragment implements View.OnClickListener 
     private Button[] buttons;
     private String endMessage;
 
-    public Fragment_GameOver() {
+    public DialogFragment_GameOver() {
         // Required empty public constructor
     }
 
@@ -40,12 +40,11 @@ public class Fragment_GameOver extends Fragment implements View.OnClickListener 
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     *
      * @return A new instance of fragment Fragment_GameOver.
      */
     // TODO: Rename and change types and number of parameters
-    public static Fragment_GameOver newInstance(Game game, Button[] buttons, String endMessage) {
-        Fragment_GameOver fragment = new Fragment_GameOver();
+    public static DialogFragment_GameOver newInstance(Game game, Button[] buttons, String endMessage) {
+        DialogFragment_GameOver fragment = new DialogFragment_GameOver();
         Bundle args = new Bundle();
         fragment.game = game;
         fragment.buttons = buttons;
@@ -74,7 +73,8 @@ public class Fragment_GameOver extends Fragment implements View.OnClickListener 
     public void onClick(View v) {
         Fragment fragment_game = new Fragment_GameBoard();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.add(R.id.fragmentContainer, fragment_game).commit();
+        transaction.replace(R.id.fragmentContainer, fragment_game).commit();
         this.game = new Game(buttons);
+        this.dismiss();
     }
 }

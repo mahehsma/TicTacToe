@@ -2,8 +2,8 @@ package com.example.tictactoe.ui;
 
 import android.os.Bundle;
 
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.tictactoe.R;
-import com.example.tictactoe.game.Difficulty;
 import com.example.tictactoe.game.Game;
 
 /**
@@ -94,11 +93,10 @@ public class Fragment_GameBoard extends Fragment implements View.OnClickListener
     }
 
 
-    private void showGameOver(){
+    private void showGameOver() {
         String message = getEndMessage();
-        Fragment fragment_GameOver = Fragment_GameOver.newInstance(game, buttons,message);
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.add(R.id.fragmentContainer, fragment_GameOver).commit();
+        DialogFragment fragment_GameOver = DialogFragment_GameOver.newInstance(game, buttons, message);
+        fragment_GameOver.show(getFragmentManager(), "dialog");
     }
 
     private String getEndMessage(){
