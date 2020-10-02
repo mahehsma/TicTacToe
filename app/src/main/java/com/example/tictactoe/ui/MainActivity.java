@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         preferences.registerOnSharedPreferenceChangeListener(this);
         loadPreferences();
-        setAppColor();
         setContentView(R.layout.activity_main);
     }
 
@@ -76,15 +75,20 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
             default:
                 Settings.difficulty = Difficulty.Impossible;
         }
-        if (Settings.appColor != (preferences.getString("list_preference_color", "yellow"))) {
-            Settings.appColor = (preferences.getString("list_preference_color", "yellow"));
-            this.recreate();
+        String preferencesColor = preferences.getString("list_preference_color", "yellow");
+        setAppColor(preferencesColor);
+        if (Settings.appColor != null) {
+            if (Settings.appColor != preferencesColor) {
+                Settings.appColor = preferencesColor;
+                this.recreate();
+            }
+        } else {
+            Settings.appColor = preferencesColor;
         }
     }
 
-    private void setAppColor() {
-        String newColor = Settings.appColor;
-        switch (newColor) {
+    private void setAppColor(String appColor) {
+        switch (appColor) {
             case "yellow":
                 getTheme().applyStyle(R.style.AppOverlayYellow, true);
                 break;
