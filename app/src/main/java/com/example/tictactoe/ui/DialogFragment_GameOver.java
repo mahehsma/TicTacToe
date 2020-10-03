@@ -22,14 +22,6 @@ import com.example.tictactoe.game.Game;
  */
 public class DialogFragment_GameOver extends DialogFragment implements View.OnClickListener {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private Game game;
-    private Button[] buttons;
     private String endMessage;
 
     public DialogFragment_GameOver() {
@@ -43,11 +35,8 @@ public class DialogFragment_GameOver extends DialogFragment implements View.OnCl
      * @return A new instance of fragment Fragment_GameOver.
      */
     // TODO: Rename and change types and number of parameters
-    public static DialogFragment_GameOver newInstance(Game game, Button[] buttons, String endMessage) {
+    public static DialogFragment_GameOver newInstance(String endMessage) {
         DialogFragment_GameOver fragment = new DialogFragment_GameOver();
-        Bundle args = new Bundle();
-        fragment.game = game;
-        fragment.buttons = buttons;
         fragment.endMessage = endMessage;
         return fragment;
     }
@@ -71,10 +60,8 @@ public class DialogFragment_GameOver extends DialogFragment implements View.OnCl
 
     @Override
     public void onClick(View v) {
-        Fragment fragment_game = new Fragment_GameBoard();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragmentContainer, fragment_game).commit();
-        this.game = new Game(buttons);
+        transaction.replace(R.id.fragmentContainer, Fragment_GameBoard.newInstance()).commit();
         this.dismiss();
     }
 }

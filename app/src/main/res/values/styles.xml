@@ -2,10 +2,10 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- yellow -->
-        <item name="colorPrimary">@color/colorPrimary_yellow</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark_yellow</item>
-        <item name="colorAccent">@color/colorAccent_yellow</item>
-        <item name="android:navigationBarColor">@color/colorPrimary_yellow</item>
+        <item name="colorPrimary">?colorPrimary</item>
+        <item name="colorPrimaryDark">?colorPrimaryDark</item>
+        <item name="colorAccent">?colorAccent</item>
+        <item name="android:navigationBarColor">?colorPrimary</item>
     </style>
 
     <style name="AppOverlayYellow" parent="AppTheme">

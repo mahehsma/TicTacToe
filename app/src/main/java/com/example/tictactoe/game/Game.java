@@ -1,13 +1,14 @@
 package com.example.tictactoe.game;
 
 
-import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.widget.Button;
 
-import com.example.tictactoe.Settings;
+import androidx.preference.PreferenceManager;
 
 
-public class Game extends Activity {
+public class Game {
     private Button[] buttons;
     private char figurePlayer = 'X';
     private char figurePc = 'O';
@@ -15,14 +16,16 @@ public class Game extends Activity {
     private Board board;
     private boolean gameOver;
     private Winner state;
+    private Difficulty difficulty;
 
-    public Game(Button[] buttons){
+    public Game(Button[] buttons, Difficulty difficulty) {
         this.buttons = buttons;
+        this.difficulty = difficulty;
         resetGame();
     }
 
     private void resetGame(){
-        minimax = new Minimax(getDifficulty(), figurePlayer, figurePc);
+        minimax = new Minimax(this.difficulty, this.figurePlayer, this.figurePc);
         board = new Board();
         gameOver = false;
         for(Button button : buttons){
@@ -42,6 +45,7 @@ public class Game extends Activity {
     public Winner whoWon(){
         return state;
     }
+
     public void makeMove(int position){
         if(this.board.isEmpty(position) && !gameOver){
             this.board.placeFigure(position, figurePlayer);
@@ -56,9 +60,5 @@ public class Game extends Activity {
             } else
                 setGameOver(Winner.DRAW);
         }
-    }
-
-    public Difficulty getDifficulty() {
-        return Settings.difficulty;
     }
 }

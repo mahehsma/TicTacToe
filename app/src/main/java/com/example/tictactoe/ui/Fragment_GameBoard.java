@@ -1,9 +1,12 @@
 package com.example.tictactoe.ui;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+import androidx.preference.PreferenceManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.tictactoe.R;
+import com.example.tictactoe.game.Difficulty;
 import com.example.tictactoe.game.Game;
 
 /**
@@ -21,14 +25,6 @@ import com.example.tictactoe.game.Game;
 public class Fragment_GameBoard extends Fragment implements View.OnClickListener {
     Game game;
     Button[] buttons = new Button[9];
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     public Fragment_GameBoard() {
         // Required empty public constructor
@@ -38,28 +34,17 @@ public class Fragment_GameBoard extends Fragment implements View.OnClickListener
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
      * @return A new instance of fragment Fragment_Game.
      */
     // TODO: Rename and change types and number of parameters
-    public static Fragment_GameBoard newInstance(String param1, String param2) {
+    public static Fragment_GameBoard newInstance() {
         Fragment_GameBoard fragment = new Fragment_GameBoard();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        fragment.game = new Game(fragment.buttons);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -82,24 +67,32 @@ public class Fragment_GameBoard extends Fragment implements View.OnClickListener
         buttons[6] = v.findViewById(R.id.buttonBL);
         buttons[7] = v.findViewById(R.id.buttonBM);
         buttons[8] = v.findViewById(R.id.buttonBR);
-        for(Button button : buttons){
+        for (Button button : buttons) {
             button.setOnClickListener(this);
         }
-        game = new Game(buttons);
+        game = new Game(buttons, getDifficulty());
     }
-    @Override
-    public void onDetach() {
-        super.onDetach();
+
+    private Difficulty getDifficulty() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        switch (preferences.getString("list_preference_difficulty", "Easy")) {
+            case "Easy":
+                return Difficulty.Easy;
+            case "Hard":
+                return Difficulty.Hard;
+            default:
+                return Difficulty.Impossible;
+        }
     }
 
 
     private void showGameOver() {
         String message = getEndMessage();
-        DialogFragment fragment_GameOver = DialogFragment_GameOver.newInstance(game, buttons, message);
+        DialogFragment fragment_GameOver = DialogFragment_GameOver.newInstance(message);
         fragment_GameOver.show(getFragmentManager(), "dialog");
     }
 
-    private String getEndMessage(){
+    private String getEndMessage() {
         String message="";
         switch(game.whoWon()){
             case DRAW: message = getString(R.string.draw);
