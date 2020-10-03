@@ -32,8 +32,8 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        if (appTheme != sharedPreferences.getString("list_preference_color", "yellow")) {
-            appTheme = sharedPreferences.getString("list_preference_color", "yellow");
+        if (appTheme != sharedPreferences.getString("list_preference_color", null)) {
+            appTheme = sharedPreferences.getString("list_preference_color", null);
             MainActivity.hasToRecreate = true;
             this.recreate();
 
@@ -51,13 +51,16 @@ public class SettingsActivity extends AppCompatActivity implements SharedPrefere
         this.appTheme = appTheme;
         switch (appTheme) {
             case "yellow":
-                getTheme().applyStyle(R.style.AppOverlayYellow, true);
+                setTheme(R.style.AppOverlayYellow);
                 break;
             case "blue":
-                getTheme().applyStyle(R.style.AppOverlayBlue, true);
+                setTheme(R.style.AppOverlayBlue);
+                break;
+            case "black":
+                setTheme(R.style.AppOverlayBlack);
                 break;
             default:
-                getTheme().applyStyle(R.style.AppOverlayRed, true);
+                setTheme(R.style.AppOverlayRed);
                 break;
         }
     }

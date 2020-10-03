@@ -27,6 +27,9 @@ public class AboutActivity extends AppCompatActivity {
             case "blue":
                 getTheme().applyStyle(R.style.AppOverlayBlue, true);
                 break;
+            case "black":
+                getTheme().applyStyle(R.style.AppOverlayBlack, true);
+                break;
             default:
                 getTheme().applyStyle(R.style.AppOverlayRed, true);
                 break;

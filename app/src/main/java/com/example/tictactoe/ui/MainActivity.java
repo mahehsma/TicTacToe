@@ -16,15 +16,16 @@ import com.example.tictactoe.R;
 
 public class MainActivity extends AppCompatActivity {
     public static boolean hasToRecreate = false;
+    private boolean firstStart = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        loadTheme();
 
         //FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         //transaction.replace(R.id.fragmentContainer, Fragment_GameBoard.newInstance());
 
+        loadTheme();
         setContentView(R.layout.activity_main);
     }
 
@@ -65,13 +66,16 @@ public class MainActivity extends AppCompatActivity {
         String theme = preferences.getString("list_preference_color", "yellow");
         switch (theme) {
             case "yellow":
-                getTheme().applyStyle(R.style.AppOverlayYellow, true);
+                setTheme(R.style.AppOverlayYellow);
                 break;
             case "blue":
-                getTheme().applyStyle(R.style.AppOverlayBlue, true);
+                setTheme(R.style.AppOverlayBlue);
+                break;
+            case "black":
+                setTheme(R.style.AppOverlayBlack);
                 break;
             default:
-                getTheme().applyStyle(R.style.AppOverlayRed, true);
+                setTheme(R.style.AppOverlayRed);
                 break;
         }
     }

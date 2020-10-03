@@ -14,4 +14,8 @@
     <color name="colorPrimaryDark_blue">#004ba0</color>
     <color name="colorAccent_blue">#63a4ff</color>
 
+    <!-- black -->
+    <color name="colorPrimary_black">#263238</color>
+    <color name="colorPrimaryDark_black">#000a12</color>
+    <color name="colorAccent_black">#4f5b62</color>
 </resources>
