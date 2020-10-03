@@ -11,21 +11,21 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.tictactoe.R;
 
 public class MainActivity extends AppCompatActivity {
     public static boolean hasToRecreate = false;
-    private boolean firstStart = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        loadTheme();
 
         //FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         //transaction.replace(R.id.fragmentContainer, Fragment_GameBoard.newInstance());
 
-        loadTheme();
         setContentView(R.layout.activity_main);
     }
 
@@ -34,7 +34,10 @@ public class MainActivity extends AppCompatActivity {
         super.onRestart();
         if (hasToRecreate) {
             hasToRecreate = false;
-            this.recreate();
+            this.finish();
+            Intent intent = new Intent(this, this.getClass());
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            this.startActivity(intent);
         }
     }
 
@@ -63,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void loadTheme() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String theme = preferences.getString("list_preference_color", "yellow");
+        String theme = preferences.getString("list_preference_color", null);
         switch (theme) {
             case "yellow":
                 setTheme(R.style.AppOverlayYellow);
